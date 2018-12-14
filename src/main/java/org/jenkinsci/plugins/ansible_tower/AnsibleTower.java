@@ -35,6 +35,7 @@ public class AnsibleTower extends Builder {
     private String limit                    = DescriptorImpl.limit;
     private String inventory                = DescriptorImpl.inventory;
     private String credential               = DescriptorImpl.credential;
+    private String sshPassword              = DescriptorImpl.sshPassword;
     private Boolean verbose                 = DescriptorImpl.verbose;
     private Boolean importTowerLogs			= DescriptorImpl.importTowerLogs;
     private Boolean removeColor				= DescriptorImpl.removeColor;
@@ -44,7 +45,7 @@ public class AnsibleTower extends Builder {
 	@DataBoundConstructor
 	public AnsibleTower(
 			@Nonnull String towerServer, @Nonnull String jobTemplate, String jobType, String extraVars, String jobTags,
-			String skipJobTags, String limit, String inventory, String credential, Boolean verbose,
+			String skipJobTags, String limit, String inventory, String credential, String sshPassword, Boolean verbose,
 			Boolean importTowerLogs, Boolean removeColor, String templateType, Boolean importWorkflowChildLogs
 	) {
 		this.towerServer = towerServer;
@@ -56,6 +57,7 @@ public class AnsibleTower extends Builder {
 		this.limit = limit;
 		this.inventory = inventory;
 		this.credential = credential;
+		this.sshPassword = sshPassword;
 		this.verbose = verbose;
 		this.importTowerLogs = importTowerLogs;
 		this.removeColor = removeColor;
@@ -74,6 +76,7 @@ public class AnsibleTower extends Builder {
 	public String getLimit() { return limit; }
 	public String getInventory() { return inventory; }
 	public String getCredential() { return credential; }
+	public String getSshPassword() { return sshPassword; }
 	public Boolean getVerbose() { return verbose; }
 	public Boolean getImportTowerLogs() { return importTowerLogs; }
 	public Boolean getRemoveColor() { return removeColor; }
@@ -98,6 +101,8 @@ public class AnsibleTower extends Builder {
 	public void setInventory(String inventory) { this.inventory = inventory; }
 	@DataBoundSetter
 	public void setCredential(String credential) { this.credential = credential; }
+	@DataBoundSetter
+	public void setSshPassword(String sshPassword) { this.sshPassword = sshPassword; }
 	@DataBoundSetter
 	public void setVerbose(Boolean verbose) { this.verbose = verbose; }
 	@DataBoundSetter
@@ -152,6 +157,7 @@ public class AnsibleTower extends Builder {
 		public static final String jobType					= "run";
 		public static final String inventory      			= "";
 		public static final String credential     			= "";
+		public static final String sshPassword     			= "";
 		public static final Boolean verbose       			= false;
 		public static final Boolean importTowerLogs			= false;
 		public static final Boolean removeColor				= false;
