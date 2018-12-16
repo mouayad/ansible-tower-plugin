@@ -133,7 +133,7 @@ public class AnsibleTower extends Builder {
 		// here we just pass a map as we don't case for non pipeline jobs
 		boolean runResult = runner.runJobTemplate(
 				listener.getLogger(), this.getTowerServer(), this.getJobTemplate(), this.getJobType(),this.getExtraVars(),
-				this.getLimit(), this.getJobTags(), this.getSkipJobTags(), this.getInventory(), this.getCredential(),
+				this.getLimit(), this.getJobTags(), this.getSkipJobTags(), this.getInventory(), this.getCredential(), this.getSshPassword(),
 				this.verbose, this.importTowerLogs, this.getRemoveColor(), envVars, templateType, importWorkflowChildLogs,
 				build.getWorkspace(), build, new Properties()
 		);

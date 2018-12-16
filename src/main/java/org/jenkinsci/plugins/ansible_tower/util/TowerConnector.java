@@ -531,7 +531,7 @@ public class TowerConnector {
     }
 
 
-    public int submitTemplate(int jobTemplate, String extraVars, String limit, String jobTags, String skipJobTags, String jobType, String inventory, String credential, String templateType) throws AnsibleTowerException {
+    public int submitTemplate(int jobTemplate, String extraVars, String limit, String jobTags, String skipJobTags, String jobType, String inventory, String credential, String sshPassword, String templateType) throws AnsibleTowerException {
         checkTemplateType(templateType);
 
         String apiEndPoint = "/job_templates/";
@@ -570,6 +570,9 @@ public class TowerConnector {
         }
         if(extraVars != null && !extraVars.isEmpty()) {
             postBody.put("extra_vars", extraVars);
+        }
+        if(sshPassword != null && !sshPassword.isEmpty()) {
+            postBody.put("sshPassword", sshPassword);
         }
         HttpResponse response = makeRequest(POST, apiEndPoint + jobTemplate + "/launch/", postBody);
 

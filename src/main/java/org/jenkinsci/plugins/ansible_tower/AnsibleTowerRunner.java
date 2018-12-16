@@ -21,7 +21,7 @@ import java.util.*;
 public class AnsibleTowerRunner {
     public boolean runJobTemplate(
             PrintStream logger, String towerServer, String jobTemplate, String jobType, String extraVars, String limit,
-            String jobTags, String skipJobTags, String inventory, String credential, boolean verbose,
+            String jobTags, String skipJobTags, String inventory, String credential, String sshPassword, boolean verbose,
             boolean importTowerLogs, boolean removeColor, EnvVars envVars, String templateType,
             boolean importWorkflowChildLogs, FilePath ws, Run<?, ?> run, Properties towerResults
     ) {
@@ -64,6 +64,9 @@ public class AnsibleTowerRunner {
         }
         if (credential != null && credential.equals("")) {
             credential = null;
+        }
+        if (sshPassword != null && sshPassword.equals("")) {
+            sshPassword = null;
         }
 
         // Expand all of the parameters
@@ -154,7 +157,7 @@ public class AnsibleTowerRunner {
         }
         int myJobID;
         try {
-            myJobID = myTowerConnection.submitTemplate(template.getInt("id"), expandedExtraVars, expandedLimit, expandedJobTags, expandedSkipJobTags, jobType, expandedInventory, expandedCredential, templateType);
+            myJobID = myTowerConnection.submitTemplate(template.getInt("id"), expandedExtraVars, expandedLimit, expandedJobTags, expandedSkipJobTags, jobType, expandedInventory, expandedCredential, sshPassword, templateType);
         } catch (AnsibleTowerException e) {
             logger.println("ERROR: Unable to request job template invocation " + e.getMessage());
             return false;
