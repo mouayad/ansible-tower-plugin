@@ -572,7 +572,7 @@ public class TowerConnector {
             postBody.put("extra_vars", extraVars);
         }
         if(sshPassword != null && !sshPassword.isEmpty()) {
-            postBody.put("sshPassword", sshPassword);
+            postBody.put("ssh_password", sshPassword);
         }
         HttpResponse response = makeRequest(POST, apiEndPoint + jobTemplate + "/launch/", postBody);
 
