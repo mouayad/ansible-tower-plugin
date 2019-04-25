@@ -190,6 +190,13 @@ public class AnsibleTowerRunner {
                     Thread.sleep(3000);
                 } catch (InterruptedException ie) {
                     logger.println("ERROR: Got interrupted while sleeping");
+                    try {
+                        myTowerConnection.cancelJob(myJobID);
+                    } catch ( AnsibleTowerException e ) {
+                        logger.println("ERROR: Failed to cancel the job from Tower: " + e.getMessage());
+                        return false;
+                    }
+                    logger.println("INFO: Canceling the job from tower OK");
                     return false;
                 }
             }

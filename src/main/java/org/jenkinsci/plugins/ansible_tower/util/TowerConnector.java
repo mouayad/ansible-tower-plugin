@@ -627,6 +627,16 @@ public class TowerConnector {
         throw new AnsibleTowerException("Template type can only be '"+ JOB_TEMPLATE_TYPE +"' or '"+ WORKFLOW_TEMPLATE_TYPE+"'");
     }
 
+    public void cancelJob(int jobID)throws AnsibleTowerException {
+
+        String apiEndpoint = "/jobs/"+ jobID +"/cancel/";
+        HttpResponse response = makeRequest(POST, apiEndpoint);
+
+        if(response.getStatusLine().getStatusCode() != 202) {
+            throw new AnsibleTowerException("Unexpected error code returned (" + response.getStatusLine().getStatusCode() + ")");
+        }
+    }
+
     public boolean isJobCompleted(int jobID, String templateType) throws AnsibleTowerException {
         checkTemplateType(templateType);
 
